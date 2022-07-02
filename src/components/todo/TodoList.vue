@@ -1,5 +1,5 @@
 <template>
-  <div class="list-container">
+  <div>
     <h1>Todo List</h1>
     <ul>
       <TodoItem
@@ -8,6 +8,7 @@
         :description="item.description"
       />
     </ul>
+    <AddTodoItem class="add-todo-item" @add-todo="addTodo" />
   </div>
 </template>
 
@@ -18,21 +19,32 @@ div {
   border-radius: 4px;
   align-items: center;
   width: 25%;
+  padding: 0px 10px 10px;
+}
+
+ul {
+  text-align: left;
+  list-style-type: none;
 }
 
 li {
-  text-align: left;
-  list-style-type: none;
   margin-bottom: 5px;
+}
+
+.add-todo-item {
+  text-align: left;
 }
 </style>
 
 <script>
 import TodoItem from "./TodoItem.vue";
+import AddTodoItem from "./AddTodoItem.vue";
+
 export default {
   name: "TodoList",
   data() {
     return {
+      lastCreatedId: 3,
       todoItems: [
         { id: 1, description: "Brush Teeth" },
         { id: 2, description: "Make Bed" },
@@ -40,6 +52,14 @@ export default {
       ],
     };
   },
-  components: { TodoItem },
+  components: { TodoItem, AddTodoItem },
+  methods: {
+    addTodo(description) {
+      this.todoItems.push({
+        id: this.lastCreatedId++,
+        description,
+      });
+    },
+  },
 };
 </script>
