@@ -1,5 +1,5 @@
 <template>
-  <h1>This is an app</h1>
+  <TodoList />
 </template>
 
 <style>
@@ -11,3 +11,13 @@
   color: #2c3e50;
 }
 </style>
+
+<script>
+import TodoList from "@/components/todo/TodoList.vue";
+
+export default {
+  components: {
+    TodoList,
+  },
+};
+</script>
