@@ -7,7 +7,15 @@
       id="checkbox"
     />
     <label for="checkbox">
-      {{ description }}
+      <input
+        type="text"
+        @keyup.enter="editMode = false"
+        v-if="editMode"
+        v-model="todo"
+      />
+      <span v-else @click.prevent="editMode = true">
+        {{ todo }}
+      </span>
     </label>
   </li>
 </template>
@@ -15,6 +23,7 @@
 <style scoped>
 input[type="checkbox"]:checked ~ label {
   text-decoration: line-through;
+  color: gray;
 }
 </style>
 
@@ -24,6 +33,8 @@ export default {
   data() {
     return {
       checked: false,
+      editMode: false,
+      todo: this.description,
     };
   },
   props: {
