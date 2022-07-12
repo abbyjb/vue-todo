@@ -6,6 +6,8 @@
         v-for="item in todoItems"
         :key="item.id"
         :description="item.description"
+        :todoKey="item.id"
+        @delete-todo="deleteTodo"
       />
     </ul>
     <AddTodoItem class="add-todo-item" @add-todo="addTodo" />
@@ -59,6 +61,14 @@ export default {
         id: this.lastCreatedId++,
         description,
       });
+    },
+
+    deleteTodo(todoId) {
+      const filteredTodos = this.todoItems.filter((todo) => {
+        return todo.id !== todoId;
+      });
+
+      this.todoItems = filteredTodos;
     },
   },
 };
