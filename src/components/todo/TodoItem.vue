@@ -8,15 +8,22 @@
     />
     <label for="checkbox">
       <input
-        type="text"
-        @keyup.enter="editMode = false"
         v-if="editMode"
+        @keyup.enter="editMode = false"
+        type="text"
         v-model="todo"
       />
-      <button v-if="editMode" @click.prevent="deleteTodo">Delete</button>
-      <span v-else @click.prevent="editMode = true">
-        {{ todo }}
-      </span>
+      <span v-else>{{ todo }} </span>
+      <div class="icon-container">
+        <font-awesome-icon
+          @click.prevent="editMode = !editMode"
+          icon="fa-regular fa-pen-to-square"
+        />
+        <font-awesome-icon
+          @click.prevent="deleteTodo"
+          icon="fa-regular fa-trash-can"
+        />
+      </div>
     </label>
   </li>
 </template>
@@ -25,6 +32,11 @@
 input[type="checkbox"]:checked ~ label {
   text-decoration: line-through;
   color: gray;
+}
+
+.icon-container {
+  float: right;
+  margin-right: 25%;
 }
 </style>
 
