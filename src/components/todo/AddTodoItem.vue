@@ -1,17 +1,13 @@
 <template>
-  <form @submit.prevent="handleSubmit">
-    <label>
-      Add Todo Item
-      <input type="text" v-model="newTodo" />
-    </label>
+  <form class="text-center" @submit.prevent="handleSubmit">
+    <input
+      class="rounded border-2 border-solid border-black px-1"
+      type="text"
+      v-model="newTodo"
+      placeholder="Add todo"
+    />
   </form>
 </template>
-
-<styled scoped>
-  form {
-    text-align: center;
-  }
-</styled>
 
 <script>
 export default {

@@ -1,7 +1,9 @@
 <template>
-  <div>
-    <h1>Todo List</h1>
-    <ul>
+  <div
+    class="inline-block rounded border-2 border-black border-solid px-10 pb-10"
+  >
+    <h1 class="text-center my-3 text-2xl">Todo List</h1>
+    <ul class="text-left list-none">
       <TodoItem
         v-for="item in todoItems"
         :key="item.id"
@@ -13,30 +15,6 @@
     <AddTodoItem class="add-todo-item" @add-todo="addTodo" />
   </div>
 </template>
-
-<style scoped>
-div {
-  display: inline-block;
-  border: 1px solid black;
-  border-radius: 4px;
-  align-items: center;
-  width: 25%;
-  padding: 0px 10px 10px;
-}
-
-ul {
-  text-align: left;
-  list-style-type: none;
-}
-
-li {
-  margin-bottom: 5px;
-}
-
-.add-todo-item {
-  text-align: left;
-}
-</style>
 
 <script>
 import TodoItem from "./TodoItem.vue";
