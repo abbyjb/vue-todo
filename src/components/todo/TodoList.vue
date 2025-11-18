@@ -2,9 +2,11 @@
   <div class="list-container">
     <h1>Todo List</h1>
     <ul>
-      <li>Brush Teeth</li>
-      <li>Make Coffee</li>
-      <li>Get Groceries</li>
+      <TodoItem
+        v-for="item in todoItems"
+        :key="item.id"
+        :description="item.description"
+      />
     </ul>
   </div>
 </template>
@@ -26,7 +28,18 @@ li {
 </style>
 
 <script>
+import TodoItem from "./TodoItem.vue";
 export default {
   name: "TodoList",
+  data() {
+    return {
+      todoItems: [
+        { id: 1, description: "Brush Teeth" },
+        { id: 2, description: "Make Bed" },
+        { id: 3, description: "Make Breakfast" },
+      ],
+    };
+  },
+  components: { TodoItem },
 };
 </script>
