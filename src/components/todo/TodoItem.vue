@@ -1,5 +1,5 @@
 <template>
-  <li>
+  <li key="todoKey">
     <input
       @change="toggleCheckbox"
       :checked="checked"
@@ -13,6 +13,7 @@
         v-if="editMode"
         v-model="todo"
       />
+      <button v-if="editMode" @click.prevent="deleteTodo">Delete</button>
       <span v-else @click.prevent="editMode = true">
         {{ todo }}
       </span>
@@ -39,10 +40,15 @@ export default {
   },
   props: {
     description: String,
+    todoKey: Number,
   },
   methods: {
     toggleCheckbox(event) {
       this.checked = event.target.checked;
+    },
+
+    deleteTodo() {
+      this.$emit("delete-todo", this.todoKey);
     },
   },
 };
